@@ -28,7 +28,14 @@ const App = () => {
     let newCart = [...cart]
     newCart.push(book)
     setCart(newCart)
-    // shorthand: [...cart, book]
+
+    //shorthand
+    // setCart([...cart, book])
+  }
+
+  const removeItemFromCart = (index) => {
+    let newCart = cart.filter((book, i) => i !== index)
+    setCart(newCart)
   }
 
   return (
@@ -44,7 +51,11 @@ const App = () => {
         </Row>
         <hr />
         <Route path="/" exact render={(routerProps) => <BookStore {...routerProps} addItemToCart={addItemToCart} />} />
-        <Route path="/cart" exact component={Cart} />
+        <Route
+          path="/cart"
+          exact
+          render={(routerProps) => <Cart {...routerProps} cart={cart} removeItemFromCart={removeItemFromCart} />}
+        />
       </Container>
     </Router>
   )

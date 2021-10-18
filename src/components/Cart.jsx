@@ -2,13 +2,13 @@ import Button from "react-bootstrap/Button";
 import { FaTrash } from "react-icons/fa";
 import { Col, Row } from "react-bootstrap";
 
-const Cart = ({ cart = [] }) => (
+const Cart = ({ cart, removeItemFromCart }) => (
   <Row>
     <Col sm={12}>
       <ul style={{ listStyle: "none" }}>
         {cart.map((book, i) => (
           <li key={i} className="my-4">
-            <Button variant="danger" onClick={() => {}}>
+            <Button variant="danger" onClick={() => removeItemFromCart(i)}>
               <FaTrash />
             </Button>
             <img

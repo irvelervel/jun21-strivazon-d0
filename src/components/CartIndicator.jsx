@@ -9,7 +9,7 @@ const CartIndicator = ({ history, cartLength }) => (
       <span className="ml-2">{cartLength}</span>
     </Button>
   </div>
-);
+)
 
 export default withRouter(CartIndicator);
 // withRouter is a function coming from react-router-dom which enriches CartIndicator

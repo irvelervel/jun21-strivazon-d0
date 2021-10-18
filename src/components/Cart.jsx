@@ -6,17 +6,18 @@ const Cart = ({ cart, removeItemFromCart }) => (
   <Row>
     <Col sm={12}>
       <ul style={{ listStyle: "none" }}>
-        {cart.map((book, i) => (
+        {cart.map((cartElement, i) => (
           <li key={i} className="my-4">
-            <Button variant="danger" onClick={() => removeItemFromCart(i)}>
+            <Button variant="danger" onClick={() => removeItemFromCart(cartElement.book.id)}>
               <FaTrash />
             </Button>
             <img
               className="book-cover-small"
-              src={book.imageUrl}
+              src={cartElement.book.imageUrl}
               alt="book selected"
             />
-            {book.title}
+            {cartElement.book.title}
+            - <strong>{cartElement.qty}</strong>
           </li>
         ))}
       </ul>
@@ -25,7 +26,7 @@ const Cart = ({ cart, removeItemFromCart }) => (
       <Col sm={12} className="font-weight-bold">
         TOTAL:{" "}
         {cart.reduce(
-          (acc, currentValue) => acc + parseFloat(currentValue.price),
+          (acc, currentValue) => acc + (currentValue.book.price * currentValue.qty),
           0
         )}
       </Col>
